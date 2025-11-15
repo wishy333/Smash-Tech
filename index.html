@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">Smash Tech | Integrated Info-Tech Company</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dark-navy': '#10172A', 
+                        'main-bg': '#FFFFFF',
+                        'section-bg': '#F9FAFB', 
+                        'button-primary': '#1E3A8A', 
+                        'accent-blue': '#1D4ED8', 
+                        'text-light': '#F3F4F6',
+                        'text-dark': '#1F2937',
+                    }
+                }
+            }
+        }
+
+        // --- Localization Data (Expanded) ---
+        const translations = {
+            "en": {
+                "page_title": "Smash Tech | Integrated Info-Tech Company", "email_address": "wishy333@gmail.com", "address_line": "Ashok Nagar, Bilaspur",
+                "phone_numbers": "+91 9650903703, +91 9204946862", "lang_label": "EN", "home": "Home", "about_us": "About Us", "services": "Services",
+                "products": "Products", "technical_info": "Technical Information", "contact_us_btn": "Contact Us", "menu_company": "Company",
+                "menu_credibility": "Credibility", "menu_overview": "Overview", "menu_history": "History", "menu_mission": "Mission & Vision", 
+                "menu_gallery": "Gallery", "menu_hierarchy": "Organisational Hierarchy", "menu_awards": "Awards & Recognition", "menu_why_us": "Why Choose Us",
+                "hero_title": "Smash Tech",
+                "hero_subtitle": "We stand out as one of the most competitive, integrated, and emerging Info-Tech Companies in India.",
+                "badge_text_1": "CMMI ML3", "badge_text_2": "APPRAISED", "section_capabilities": "Our Capabilities", "what_we_build": "What We Build",
+                "card1_title": "Website Development", "card1_desc": "High-performance, secure, and fully responsive websites and web applications.",
+                "card2_title": "Mobile App Development", "card2_desc": "Native and cross-platform mobile apps for iOS and Android tailored for user success.",
+                "card3_title": "Cloud Solutions", "card3_desc": "Migration, infrastructure management, and optimized cloud services (AWS, Azure, GCP).",
+                "card4_title": "Digital Marketing", "card4_desc": "SEO, content strategy, and social media campaigns to drive traffic and growth.",
+                "about_title": "Our Commitment to Excellence",
+                "about_subtitle": "Smash Tech is committed to delivering high-quality, innovative IT solutions. Our expertise spans next-generation technology to drive measurable business results.",
+                "value1_title": "Innovation", "value1_desc": "We leverage the latest technology stacks to build fast, future-proof applications and systems.",
+                "value2_title": "Quality Assurance", "value2_desc": "Our processes are rigorously tested, adhering to global standards for software quality and reliability.",
+                "value3_title": "Client Focus", "value3_desc": "We work closely with clients to deliver customized solutions that meet their exact operational requirements.",
+                "testimonials_title": "What Our Clients Say", "testimonials_subtitle": "Hear directly from the businesses we've helped achieve digital success and operational efficiency.",
+                "contact_title": "Get In Touch With Us", "contact_message_heading": "Send Us a Message", "label_name": "Full Name",
+                "label_email": "Email Address", "label_message": "Your Message / Project Details", "submit_btn": "Submit Inquiry",
+                "contact_message_success": "Thank you for your inquiry! We will respond shortly.", "contact_location_heading": "Our Location",
+                "addr_heading": "Address:", "addr_content": "Smash Tech<br>Ashok Nagar, Bilaspur, Chhattisgarh, Pin 496001, India",
+                "mobile_heading": "Mobile:", "email_heading": "Email:",
+                "footer_copy": "© 2024 Smash Tech. All rights reserved. | Developed with passion and integrity.", "privacy_policy": "Privacy Policy", "terms_service": "Terms of Service"
+            },
+            "ar": {
+                "page_title": "سماش تك | شركة متكاملة لتكنولوجيا المعلومات", "email_address": "wishy333@gmail.com", "address_line": "أشوك ناجار، بيلاسبور",
+                "phone_numbers": "+91 9650903703, +91 9204946862", "lang_label": "عربي", "home": "الرئيسية", "about_us": "عنا", "services": "الخدمات",
+                "products": "المنتجات", "technical_info": "المعلومات الفنية", "contact_us_btn": "اتصل بنا", "menu_company": "الشركة",
+                "menu_credibility": "المصداقية", "menu_overview": "نظرة عامة", "menu_history": "التاريخ", "menu_mission": "الرسالة والرؤية", 
+                "menu_gallery": "المعرض", "menu_hierarchy": "التنظيم الإداري", "menu_awards": "الجوائز والاعترافات", "menu_why_us": "لماذا تختارنا",
+                "hero_title": "سماش تك",
+                "hero_subtitle": "نحن نبرز كواحدة من أكثر شركات تكنولوجيا المعلومات تنافسية وتكاملاً وظهورًا في الهند.",
+                "badge_text_1": "CMMI ML3", "badge_text_2": "تم التقييم", "section_capabilities": "قدراتنا", "what_we_build": "ما نبنيه",
+                "card1_title": "تطوير المواقع", "card1_desc": "مواقع وتطبيقات ويب عالية الأداء وآمنة ومتجاوبة بالكامل.",
+                "card2_title": "تطوير تطبيقات الجوال", "card2_desc": "تطبيقات جوال أصلية وعابرة للمنصات لنظامي iOS و Android مصممة لنجاح المستخدم.",
+                "card3_title": "حلول السحابة", "card3_desc": "الترحيل، وإدارة البنية التحتية، وخدمات السحابة المُحسَّنة (AWS, Azure, GCP).",
+                "card4_title": "التسويق الرقمي", "card4_desc": "تحسين محركات البحث، استراتيجية المحتوى، وحملات التواصل الاجتماعي لدفع الحركة والنمو.",
+                "about_title": "التزامنا بالتميز",
+                "about_subtitle": "تلتزم سماش تك بتقديم حلول تكنولوجيا معلومات مبتكرة وعالية الجودة. تمتد خبرتنا عبر تقنيات الجيل التالي لتحقيق نتائج أعمال قابلة للقياس.",
+                "value1_title": "الابتكار", "value1_desc": "نحن نستغل أحدث حزم التقنية لبناء تطبيقات وأنظمة سريعة ومستدامة للمستقبل.",
+                "value2_title": "ضمان الجودة", "value2_desc": "يتم اختبار عملياتنا بدقة، مع الالتزام بالمعايير العالمية لجودة البرمجيات والموثوقية.",
+                "value3_title": "التركيز على العميل", "value3_desc": "نعمل عن كثب مع العملاء لتقديم حلول مخصصة تلبي متطلباتهم التشغيلية بدقة.",
+                "testimonials_title": "ماذا يقول عملاؤنا", "testimonials_subtitle": "استمع مباشرة من الشركات التي ساعدناها على تحقيق النجاح الرقمي والكفاءة التشغيلية.",
+                "contact_title": "تواصل معنا", "contact_message_heading": "أرسل لنا رسالة", "label_name": "الاسم الكامل",
+                "label_email": "عنوان البريد الإلكتروني", "label_message": "رسالتك / تفاصيل المشروع", "submit_btn": "إرسال الاستفسار",
+                "contact_message_success": "شكراً لاستفسارك! سنرد عليك قريباً.", "contact_location_heading": "موقعنا",
+                "addr_heading": "العنوان:", "addr_content": "سماش تك<br>أشوك ناجار، بيلاسبور، تشهاتيسجاره، الرمز البريدي 496001، الهند",
+                "mobile_heading": "الجوال:", "email_heading": "البريد الإلكتروني:",
+                "footer_copy": "© 2024 سماش تك. جميع الحقوق محفوظة. | تم التطوير بشغف ونزاهة.", "privacy_policy": "سياسة الخصوصية", "terms_service": "شروط الخدمة"
+            },
+            "es": {
+                "page_title": "Smash Tech | Empresa de Info-Tech Integrada", "email_address": "wishy333@gmail.com", "address_line": "Ashok Nagar, Bilaspur",
+                "phone_numbers": "+91 9650903703, +91 9204946862", "lang_label": "ES", "home": "Inicio", "about_us": "Nosotros", "services": "Servicios",
+                "products": "Productos", "technical_info": "Información Técnica", "contact_us_btn": "Contáctenos", "menu_company": "Empresa",
+                "menu_credibility": "Credibilidad", "menu_overview": "Resumen", "menu_history": "Historia", "menu_mission": "Misión y Visión", 
+                "menu_gallery": "Galería", "menu_hierarchy": "Jerarquía Organizativa", "menu_awards": "Premios y Reconocimientos", "menu_why_us": "¿Por qué elegirnos?",
+                "hero_title": "Smash Tech",
+                "hero_subtitle": "Destacamos como una de las empresas de Info-Tech más competitivas, integradas y emergentes de la India.",
+                "badge_text_1": "CMMI ML3", "badge_text_2": "EVALUADO", "section_capabilities": "Nuestras Capacidades", "what_we_build": "Lo que Construimos",
+                "card1_title": "Desarrollo Web", "card1_desc": "Sitios web y aplicaciones web de alto rendimiento, seguros y totalmente responsivos.",
+                "card2_title": "Desarrollo de Apps Móviles", "card2_desc": "Aplicaciones móviles nativas y multiplataforma para iOS y Android, adaptadas para el éxito del usuario.",
+                "card3_title": "Soluciones en la Nube", "card3_desc": "Migración, gestión de infraestructura y servicios de nube optimizados (AWS, Azure, GCP).",
+                "card4_title": "Marketing Digital", "card4_desc": "SEO, estrategia de contenido y campañas de redes sociales para impulsar el tráfico y el crecimiento.",
+                "about_title": "Nuestro Compromiso con la Excelencia",
+                "about_subtitle": "Smash Tech se compromete a ofrecer soluciones de TI innovadoras y de alta calidad. Nuestra experiencia abarca la tecnología de próxima generación para impulsar resultados empresariales medibles.",
+                "value1_title": "Innovación", "value1_desc": "Aprovechamos las últimas pilas tecnológicas para crear aplicaciones y sistemas rápidos y a prueba de futuro.",
+                "value2_title": "Garantía de Calidad", "value2_desc": "Nuestros procesos son probados rigurosamente, adhiriéndose a estándares globales de calidad y fiabilidad de software.",
+                "value3_title": "Foco en el Cliente", "value3_desc": "Trabajamos estrechamente con los clientes para ofrecer soluciones personalizadas que satisfagan sus requisitos operativos exactos.",
+                "testimonials_title": "Lo que Dicen Nuestros Clientes", "testimonials_subtitle": "Escuche directamente de las empresas a las que hemos ayudado a lograr el éxito digital y la eficiencia operativa.",
+                "contact_title": "Póngase en Contacto con Nosotros", "contact_message_heading": "Envíenos un Mensaje", "label_name": "Nombre Completo",
+                "label_email": "Correo Electrónico", "label_message": "Su Mensaje / Detalles del Proyecto", "submit_btn": "Enviar Consulta",
+                "contact_message_success": "¡Gracias por su consulta! Le responderemos en breve.", "contact_location_heading": "Nuestra Ubicación",
+                "addr_heading": "Dirección:", "addr_content": "Smash Tech<br>Ashok Nagar, Bilaspur, Chhattisgarh, Pin 496001, India",
+                "mobile_heading": "Móvil:", "email_heading": "Correo Electrónico:",
+                "footer_copy": "© 2024 Smash Tech. Todos los derechos reservados. | Desarrollado con pasión e integridad.", "privacy_policy": "Política de Privacidad", "terms_service": "Términos de Servicio"
+            },
+            "hi": {
+                "page_title": "स्मैश टेक | इंटीग्रेटेड इन्फो-टेक कंपनी", "email_address": "wishy333@gmail.com", "address_line": "अशोक नगर, बिलासपुर",
+                "phone_numbers": "+91 9650903703, +91 9204946862", "lang_label": "HI", "home": "होम", "about_us": "हमारे बारे में", "services": "सेवाएं",
+                "products": "उत्पाद", "technical_info": "तकनीकी जानकारी", "contact_us_btn": "हमसे संपर्क करें", "menu_company": "कंपनी",
+                "menu_credibility": "विश्वसनीयता", "menu_overview": "अवलोकन", "menu_history": "इतिहास", "menu_mission": "मिशन और विजन", 
+                "menu_gallery": "गैलरी", "menu_hierarchy": "संगठनात्मक पदानुक्रम", "menu_awards": "पुरस्कार और मान्यता", "menu_why_us": "हमें क्यों चुनें",
+                "hero_title": "स्मैश टेक",
+                "hero_subtitle": "हम भारत में सबसे अधिक प्रतिस्पर्धी, एकीकृत और उभरती हुई इन्फो-टेक कंपनियों में से एक के रूप में खड़े हैं।",
+                "badge_text_1": "CMMI ML3", "badge_text_2": "मूल्यांकित", "section_capabilities": "हमारी क्षमताएं", "what_we_build": "हम क्या बनाते हैं",
+                "card1_title": "वेबसाइट विकास", "card1_desc": "उच्च-प्रदर्शन, सुरक्षित, और पूरी तरह से प्रतिक्रियाशील वेबसाइट और वेब एप्लिकेशन।",
+                "card2_title": "मोबाइल ऐप विकास", "card2_desc": "उपयोगकर्ता की सफलता के लिए तैयार किए गए iOS और Android के लिए नेटिव और क्रॉस-प्लेटफ़ॉर्म मोबाइल ऐप्स।",
+                "card3_title": "क्लाउड समाधान", "card3_desc": "माइग्रेशन, इन्फ्रास्ट्रक्चर प्रबंधन, और ऑप्टिमाइज़्ड क्लाउड सेवाएं (AWS, Azure, GCP)।",
+                "card4_title": "डिजिटल मार्केटिंग", "card4_desc": "ट्रैफ़िक और विकास को बढ़ाने के लिए एसईओ, कंटेंट रणनीति, और सोशल मीडिया अभियान।",
+                "about_title": "उत्कृष्टता के प्रति हमारी प्रतिबद्धता",
+                "about_subtitle": "स्मैश टेक उच्च-गुणवत्ता, नवीन आईटी समाधान प्रदान करने के लिए प्रतिबद्ध है। हमारी विशेषज्ञता मापने योग्य व्यावसायिक परिणाम देने के लिए अगली पीढ़ी की तकनीक तक फैली हुई है।",
+                "value1_title": "नवाचार", "value1_desc": "हम तेज़, भविष्य-प्रूफ एप्लिकेशन और सिस्टम बनाने के लिए नवीनतम प्रौद्योगिकी स्टैक का लाभ उठाते हैं।",
+                "value2_title": "गुणवत्ता आश्वासन", "value2_desc": "सॉफ्टवेयर की गुणवत्ता और विश्वसनीयता के लिए वैश्विक मानकों का पालन करते हुए, हमारी प्रक्रियाओं का कड़ाई से परीक्षण किया जाता है।",
+                "value3_title": "ग्राहक केंद्रितता", "value3_desc": "हम ग्राहकों की सटीक परिचालन आवश्यकताओं को पूरा करने वाले अनुकूलित समाधान प्रदान करने के लिए उनके साथ मिलकर काम करते हैं।",
+                "testimonials_title": "हमारे ग्राहक क्या कहते हैं", "testimonials_subtitle": "उन व्यवसायों से सीधे सुनें जिन्हें हमने डिजिटल सफलता और परिचालन दक्षता प्राप्त करने में मदद की है।",
+                "contact_title": "हमसे संपर्क करें", "contact_message_heading": "हमें एक संदेश भेजें", "label_name": "पूरा नाम",
+                "label_email": "ईमेल पता", "label_message": "आपका संदेश / परियोजना विवरण", "submit_btn": "पूछताछ सबमिट करें",
+                "contact_message_success": "आपकी पूछताछ के लिए धन्यवाद! हम शीघ्र ही जवाब देंगे।", "contact_location_heading": "हमारा स्थान",
+                "addr_heading": "पता:", "addr_content": "स्मैश टेक<br>अशोक नगर, बिलासपुर, छत्तीसगढ़, पिन 496001, भारत",
+                "mobile_heading": "मोबाइल:", "email_heading": "ईमेल:",
+                "footer_copy": "© 2024 स्मैश टेक। सर्वाधिकार सुरक्षित। | जुनून और ईमानदारी के साथ विकसित किया गया।", "privacy_policy": "गोपनीयता नीति", "terms_service": "सेवा की शर्तें"
+            }
+        };
+
+        // Function to apply translations and RTL/LTR styles
+        function setLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+
+            // 1. Set global document direction and language
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr'; // Set RTL for Arabic
+            
+            // Adjust body text alignment for RTL consistency
+            document.body.classList.toggle('text-right', lang === 'ar');
+
+            // 2. Apply translations to all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (data[key]) {
+                    if (data[key].includes('<') && data[key].includes('>')) {
+                        element.innerHTML = data[key];
+                    } else {
+                        element.textContent = data[key];
+                    }
+                }
+            });
+
+            // 3. Update the visible language text
+            document.getElementById('current-lang-text').textContent = data['lang_label'];
+            document.getElementById('mobile-contact-btn').textContent = data['contact_us_btn'];
+        }
+        
+        // Initial setup: Detect browser language or default to English
+        document.addEventListener('DOMContentLoaded', () => {
+            let initialLang = 'en';
+            const browserLang = navigator.language.toLowerCase();
+            
+            // Check for locales: Arabic first, then Hindi (for India), then default to English
+            if (browserLang.startsWith('ar')) {
+                initialLang = 'ar';
+            } else if (browserLang.startsWith('hi') || browserLang.includes('-in')) {
+                initialLang = 'en'; // Keeping default to English for India as requested, but could be 'hi'
+            }
+
+            // If the user is in India (based on your request), we'll keep the default to English unless Arabic is explicitly requested via browser settings.
+            setLanguage(initialLang);
+
+            // Set up language switcher listeners (Desktop)
+            document.getElementById('lang-switch-en').addEventListener('click', () => setLanguage('en'));
+            document.getElementById('lang-switch-ar').addEventListener('click', () => setLanguage('ar'));
+            document.getElementById('lang-switch-es').addEventListener('click', () => setLanguage('es'));
+            document.getElementById('lang-switch-hi').addEventListener('click', () => setLanguage('hi'));
+
+            // Set up language switcher listeners (Mobile)
+            document.getElementById('lang-switch-en-mobile').addEventListener('click', () => setLanguage('en'));
+            document.getElementById('lang-switch-ar-mobile').addEventListener('click', () => setLanguage('ar'));
+            document.getElementById('lang-switch-es-mobile').addEventListener('click', () => setLanguage('es'));
+            document.getElementById('lang-switch-hi-mobile').addEventListener('click', () => setLanguage('hi'));
+        });
+
+
+    </script>
+    <style>
+        .transition-all { transition: all 0.3s ease; }
+        html { scroll-behavior: smooth; }
+
+        .info-bar {
+            background-color: var(--tw-colors-dark-navy);
+            color: var(--tw-colors-text-light);
+            z-index: 51;
+        }
+
+        .mega-menu-wrapper {
+            position: relative;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%; 
+            left: 50%;
+            transform: translateX(-50%); 
+            width: max-content; 
+            min-width: 600px;
+            background-color: white;
+            border-top: 4px solid var(--tw-colors-accent-blue);
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 40;
+            display: none;
+            padding: 2rem;
+        }
+
+        .mega-menu-wrapper:hover .mega-menu {
+            display: flex;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 90vh; 
+            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/16482189190253747816');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8); 
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 1rem;
+            max-width: 60rem;
+            text-align: left;
+        }
+        
+        .icon-color {
+            color: var(--tw-colors-button-primary);
+        }
+        
+        @media (max-width: 1024px) {
+            .logo-text {
+                font-size: 1.25rem; 
+            }
+        }
+
+        /* --- FIX: Language Dropdown Styling --- */
+        .lang-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position immediately below the button */
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 50;
+            right: 0; 
+            border-radius: 0.5rem;
+            margin-top: 0; /* REMOVED GAP */
+        }
+        /* Hover on the parent div (.lang-dropdown) keeps the content visible */
+        .lang-dropdown:hover .lang-dropdown-content {
+            display: block;
+        }
+        .lang-dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-radius: 0.5rem;
+            /* Added padding-bottom to link to ensure gap between links is included in hover area */
+            line-height: 1.25; 
+        }
+
+        /* RTL specific adjustments for the hero text alignment */
+        html[dir="rtl"] .hero-content {
+            text-align: right;
+        }
+
+        /* RTL specific adjustments for Contact section icons */
+        html[dir="rtl"] .space-x-4 {
+            /* Tailwind utility class reversal for RTL: flex-row-reverse for icons */
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body class="font-sans bg-main-bg text-text-dark">
+
+    <!-- 1. Top Info Bar (Dark Navy) -->
+    <div class="info-bar sticky top-0 hidden lg:block">
+        <div class="container mx-auto px-6 py-2 flex justify-between items-center text-sm">
+            <!-- Left Info -->
+            <div class="flex space-x-6">
+                <p class="flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span data-i18n="email_address">wishy333@gmail.com</span>
+                </p>
+                <p class="flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span data-i18n="address_line">Ashok Nagar, Bilaspur</span>
+                </p>
+                <p class="flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.12.35.03.75-.25 1.02l-2.2 2.2z"/></svg>
+                    <span data-i18n="phone_numbers">+91 9650903703, +91 9204946862</span>
+                </p>
+            </div>
+            <!-- Right Socials and Language -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-accent-blue transition-all">F</a>
+                <a href="#" class="hover:text-accent-blue transition-all">in</a>
+                <a href="#" class="hover:text-accent-blue transition-all">O</a>
+                <!-- Language Selector Dropdown (Desktop) -->
+                <div class="ml-4 relative lang-dropdown">
+                    <button class="flex items-center space-x-1 hover:text-accent-blue transition-all p-2 rounded-md hover:bg-white/10">
+                        <span class="text-sm font-bold" id="current-lang-text" data-i18n="lang_label">EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <!-- Dropdown Content -->
+                    <div class="lang-dropdown-content">
+                        <a href="#" id="lang-switch-en" class="text-text-dark hover:bg-gray-100 transition-all">🇬🇧 English</a>
+                        <a href="#" id="lang-switch-hi" class="text-text-dark hover:bg-gray-100 transition-all">🇮🇳 हिन्दी</a>
+                        <a href="#" id="lang-switch-ar" class="text-text-dark hover:bg-gray-100 transition-all">🇸🇦 العربية</a>
+                        <a href="#" id="lang-switch-es" class="text-text-dark hover:bg-gray-100 transition-all">🇪🇸 Español</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Main Navigation Bar (White & Sticky) -->
+    <header class="sticky top-[42px] lg:top-[42px] z-40 bg-main-bg shadow-lg border-b border-gray-100">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center space-x-3 text-3xl font-extrabold text-text-dark">
+                <svg class="w-10 h-10 text-button-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM4 19H3v-2h1v2zm0-4H3v-2h1v2zm0-4H3V9h1v2zm0-4H3V5h1v2zm16 12h-1v-2h1v2zm0-4h-1v-2h1v2zm0-4h-1V9h1v2zm0-4h-1V5h1v2zM7 17H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V7h2v2zm4 8H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
+                <span class="logo-text text-xl font-bold lg:text-2xl" data-i18n="hero_title">Smash Tech</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="#hero" class="px-4 py-3 font-medium text-text-dark hover:text-accent-blue transition-all" data-i18n="home">Home</a>
+
+                <div class="relative mega-menu-wrapper">
+                    <a href="#" class="px-4 py-3 font-medium text-text-dark hover:text-accent-blue transition-all flex items-center" data-i18n="about_us">
+                        About Us
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <div class="mega-menu hidden">
+                        <div class="w-1/3 pr-8 flex items-center">
+                            <img src="https://placehold.co/200x150/F9FAFB/1E3A8A?text=Our+Team" alt="Team meeting" class="rounded-xl shadow-lg border border-gray-200" onerror="this.src='https://placehold.co/200x150/F9FAFB/1E3A8A?text=Our+Team'">
+                        </div>
+                        <div class="w-2/3 grid grid-cols-2 gap-x-10 gap-y-3 text-text-dark text-lg">
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 text-button-primary border-b border-gray-100 pb-1" data-i18n="menu_company">Company</h4>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_overview">Overview</a>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_history">History</a>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_mission">Mission & Vision</a>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_gallery">Gallery</a>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 text-button-primary border-b border-gray-100 pb-1" data-i18n="menu_credibility">Credibility</h4>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_hierarchy">Organisational Hierarchy</a>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_awards">Awards & Recognition</a>
+                                <a href="#" class="block py-1 hover:text-accent-blue transition-all" data-i18n="menu_why_us">Why Choose Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#services" class="px-4 py-3 font-medium text-text-dark hover:text-accent-blue transition-all flex items-center" data-i18n="services">
+                    Services
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+                <a href="#products" class="px-4 py-3 font-medium text-text-dark hover:text-accent-blue transition-all flex items-center" data-i18n="products">
+                    Products
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+                <a href="#tech" class="px-4 py-3 font-medium text-text-dark hover:text-accent-blue transition-all" data-i18n="technical_info">Technical Information</a>
+
+                <a href="#contact" class="px-6 py-2 ml-4 bg-button-primary text-white font-bold rounded-md shadow-md hover:bg-accent-blue transition-all" data-i18n="contact_us_btn">
+                    Contact Us
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-text-dark focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-main-bg px-6 pb-4 shadow-inner">
+            <a href="#hero" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="home">Home</a>
+            <a href="#what-we-do" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="what_we_build">What We Build</a>
+            <a href="#about" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="about_us">About Us</a>
+            <a href="#services" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="services">Services</a>
+            <a href="#products" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="products">Products</a>
+            <a href="#tech" class="block py-3 text-text-dark hover:text-accent-blue border-b border-gray-200 transition-all" data-i18n="technical_info">Technical Information</a>
+            <a href="#contact" id="mobile-contact-btn" class="mt-4 block w-full text-center py-3 bg-button-primary text-white font-bold rounded-md hover:bg-accent-blue transition-all" data-i18n="contact_us_btn">Contact Us</a>
+
+            <!-- Mobile Language Switch -->
+            <div class="flex flex-col space-y-2 pt-4 border-t border-gray-200 mt-4">
+                <button id="lang-switch-en-mobile" class="px-3 py-2 text-base rounded-lg border border-gray-300 hover:bg-gray-100 transition-all text-left">🇬🇧 English</button>
+                <button id="lang-switch-hi-mobile" class="px-3 py-2 text-base rounded-lg border border-gray-300 hover:bg-gray-100 transition-all text-left">🇮🇳 हिन्दी</button>
+                <button id="lang-switch-ar-mobile" class="px-3 py-2 text-base rounded-lg border border-gray-300 hover:bg-gray-100 transition-all text-left">🇸🇦 العربية</button>
+                <button id="lang-switch-es-mobile" class="px-3 py-2 text-base rounded-lg border border-gray-300 hover:bg-gray-100 transition-all text-left">🇪🇸 Español</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Hero Section (Image Background) -->
+    <section id="hero" class="hero-image-container" style="background-image: url('Smash.jpg');">
+        <div class="hero-overlayy"></div>
+
+        <!-- Text Content -->
+        <div class="hero-content container mx-auto px-6" >
+            <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight mb-6" data-i18n="hero_title" style="color: black;">
+                Smash Tech
+            </h1>
+            <p class="text-xl sm:text-2xl font-normal max-w-2xl" data-i18n="hero_subtitle" style="color: black;">
+                We stand out as one of the most competitive, integrated, and emerging Info-Tech Companies in India.
+            </p>
+          
+            <!-- Badge Placeholder (CMMI ML3) -->
+             <!-- 
+            <div class="mt-12 w-32 h-32 p-4 bg-gray-900/70 rounded-lg shadow-xl border-2 border-accent-blue flex flex-col justify-center items-center text-center">
+                <p class="text-white font-bold text-sm" data-i18n="badge_text_1">CMMI ML3</p>
+                <p class="text-white text-xs mt-1" data-i18n="badge_text_2">APPRAISED</p>
+            </div>
+            -->
+            <!-- Scroll Arrow Placeholder -->
+           <!-- 
+            <div class="absolute bottom-6 right-6 p-3 rounded-full bg-button-primary/70 hover:bg-button-primary transition-all cursor-pointer shadow-lg" onclick="document.getElementById('what-we-do').scrollIntoView({ behavior: 'smooth' });">
+                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+          -->
+        </div>
+    </section>
+    
+    <!-- 4. What We Do / Core Expertise Section -->
+    <section id="what-we-do" class="py-20 bg-main-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-base font-semibold uppercase text-accent-blue tracking-wider mb-2" data-i18n="section_capabilities">Our Capabilities</h2>
+            <h3 class="text-4xl font-extrabold text-text-dark mb-12" data-i18n="what_we_build">What We Build</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1: Website Development -->
+                <div class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300 border-b-4 border-button-primary bg-section-bg">
+                    <svg class="w-12 h-12 icon-color mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v12h16V6H4zm2 3h12v2H6V9zm0 4h8v2H6v-2z"/></svg>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="card1_title">Website Development</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="card1_desc">High-performance, secure, and fully responsive websites and web applications.</p>
+                </div>
+
+                <!-- Service Card 2: Mobile App Development -->
+                <div class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300 border-b-4 border-button-primary bg-section-bg">
+                    <svg class="w-12 h-12 icon-color mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 1c-1.93 0-3.5 1.57-3.5 3.5v16c0 1.93 1.57 3.5 3.5 3.5h3c1.93 0 3.5-1.57 3.5-3.5v-16c0-1.93-1.57-3.5-3.5-3.5h-3zm0 2h3c.83 0 1.5.67 1.5 1.5v16c0 .83-.67 1.5-1.5 1.5h-3c-.83 0-1.5-.67-1.5-1.5v-16c0-.83.67-1.5 1.5-1.5zM7 5H2v14h5v2H2c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h5v2z"/></svg>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="card2_title">Mobile App Development</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="card2_desc">Native and cross-platform mobile apps for iOS and Android tailored for user success.</p>
+                </div>
+
+                <!-- Service Card 3: Cloud Solutions -->
+                <div class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300 border-b-4 border-button-primary bg-section-bg">
+                    <svg class="w-12 h-12 icon-color mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-2.82 0-5.27 1.46-6.6 3.63C4.42 7.02 3 8.35 3 10c0 1.63 1.37 3 3 3h13c1.65 0 3-1.35 3-3 0-1.65-1.35-3-3-3z"/></svg>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="card3_title">Cloud Solutions</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="card3_desc">Migration, infrastructure management, and optimized cloud services (AWS, Azure, GCP).</p>
+                </div>
+
+                <!-- Service Card 4: Digital Marketing -->
+                <div class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300 border-b-4 border-button-primary bg-section-bg">
+                    <svg class="w-12 h-12 icon-color mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 3l-6.5 4.33-6.5-4.33V6l6.5 4.33 6.5-4.33v1z"/></svg>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="card4_title">Digital Marketing</h4>
+                    <p class="text-gray-600 text-sm" data-i18n="card4_desc">SEO, content strategy, and social media campaigns to drive traffic and growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. About Us/Values Section -->
+    <section id="about" class="py-24 bg-section-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold text-button-primary mb-4" data-i18n="about_title">Our Commitment to Excellence</h2>
+            <p class="text-lg text-text-dark max-w-4xl mx-auto mb-16" data-i18n="about_subtitle">
+                Smash Tech is committed to delivering high-quality, innovative IT solutions. Our expertise spans next-generation technology to drive measurable business results.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-main-bg rounded-xl shadow-lg border-t-4 border-accent-blue">
+                    <div class="icon-color mb-4 flex justify-center">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 21h20L12 2zm0 13l-4-4h8l-4 4z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="value1_title">Innovation</h3>
+                    <p class="text-gray-600" data-i18n="value1_desc">We leverage the latest technology stacks to build fast, future-proof applications and systems.</p>
+                </div>
+                <div class="p-8 bg-main-bg rounded-xl shadow-lg border-t-4 border-accent-blue">
+                    <div class="icon-color mb-4 flex justify-center">
+                         <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M22 10V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v-2h-7V6h16v4h2zM19 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm-4 0H9v2h2v-2zm-4 0H5v2h2v-2zm-1 4H4v2h2v-2zm12 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm-4 0H9v2h2v-2z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="value2_title">Quality Assurance</h3>
+                    <p class="text-gray-600" data-i18n="value2_desc">Our processes are rigorously tested, adhering to global standards for software quality and reliability.</p>
+                </div>
+                <div class="p-8 bg-main-bg rounded-xl shadow-lg border-t-4 border-accent-blue">
+                    <div class="icon-color mb-4 flex justify-center">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-12l4 4-4 4v-8z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="value3_title">Client Focus</h3>
+                    <p class="text-gray-600" data-i18n="value3_desc">We work closely with clients to deliver customized solutions that meet their exact operational requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Client Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-main-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold text-text-dark mb-4" data-i18n="testimonials_title">What Our Clients Say</h2>
+            <p class="text-lg text-gray-600 max-w-4xl mx-auto mb-16" data-i18n="testimonials_subtitle">
+                Hear directly from the businesses we've helped achieve digital success and operational efficiency.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 bg-section-bg rounded-xl shadow-lg border border-gray-200">
+                    <p class="italic text-gray-700 mb-6">
+                        "Smash Tech completely transformed our legacy system into a scalable, cloud-based platform. Their team's technical depth and prompt communication were outstanding."
+                    </p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <img src="https://placehold.co/64x64/1E3A8A/FFFFFF?text=J.D." alt="Client Photo" class="w-16 h-16 rounded-full object-cover border-4 border-accent-blue">
+                        <div class="text-left">
+                            <p class="font-bold text-lg text-button-primary">Jitendra D.</p>
+                            <p class="text-sm text-gray-500">CTO, Global Logistics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="p-8 bg-section-bg rounded-xl shadow-lg border border-gray-200">
+                    <p class="italic text-gray-700 mb-6">
+                        "The migration to the new infrastructure was seamless. We saw an immediate 40% improvement in load times, directly impacting our user engagement and revenue."
+                    </p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <img src="https://placehold.co/64x64/1D4ED8/FFFFFF?text=A.K." alt="Client Photo" class="w-16 h-16 rounded-full object-cover border-4 border-accent-blue">
+                        <div class="text-left">
+                            <p class="font-bold text-lg text-button-primary">Anjali K.</p>
+                            <p class="text-sm text-gray-500">Founder, Evolve Fitness</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="p-8 bg-section-bg rounded-xl shadow-lg border border-gray-200">
+                    <p class="italic text-gray-700 mb-6">
+                        "Professional, transparent, and delivered ahead of schedule. Smash Tech is now our go-to partner for all critical development projects. Highly recommend their service."
+                    </p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <img src="https://placehold.co/64x64/1E3A8A/FFFFFF?text=S.M." alt="Client Photo" class="w-16 h-16 rounded-full object-cover border-4 border-accent-blue">
+                        <div class="text-left">
+                            <p class="font-bold text-lg text-button-primary">Sanjay M.</p>
+                            <p class="text-sm text-gray-500">Director of IT, Apex Corp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Contact Section -->
+    <section id="contact" class="py-24 bg-section-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-extrabold text-button-primary text-center mb-16" data-i18n="contact_title">Get In Touch With Us</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information and Form -->
+                <div>
+                    <h3 class="text-3xl font-bold text-text-dark mb-6" data-i18n="contact_message_heading">Send Us a Message</h3>
+                    
+                    <!-- Contact Form -->
+                    <form onsubmit="event.preventDefault(); document.getElementById('contact-message').textContent=translations[document.documentElement.lang]['contact_message_success']; document.getElementById('contact-message').classList.remove('hidden');" class="space-y-6 bg-main-bg p-8 rounded-xl shadow-lg">
+                        <div>
+                            <label for="c_name" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="label_name">Full Name</label>
+                            <input type="text" id="c_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-accent-blue focus:border-accent-blue transition-all">
+                        </div>
+                        <div>
+                            <label for="c_email" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="label_email">Email Address</label>
+                            <input type="email" id="c_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-accent-blue focus:border-accent-blue transition-all">
+                        </div>
+                        <div>
+                            <label for="c_message" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="label_message">Your Message / Project Details</label>
+                            <textarea id="c_message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-accent-blue focus:border-accent-blue transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-button-primary text-white font-bold rounded-lg shadow-md hover:bg-accent-blue transition-all" data-i18n="submit_btn">
+                            Submit Inquiry
+                        </button>
+                        <p id="contact-message" class="text-center mt-4 hidden text-sm font-medium text-button-primary"></p>
+                    </form>
+                </div>
+
+                <!-- Location and Map -->
+                <div class="space-y-8">
+                    <h3 class="text-3xl font-bold text-text-dark mb-6" data-i18n="contact_location_heading">Our Location</h3>
+                    
+                    <!-- Address Details -->
+                    <div class="space-y-6 p-8 bg-main-bg rounded-xl shadow-lg border-t-4 border-accent-blue">
+                        <!-- Address -->
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 text-button-primary mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <div>
+                                <h4 class="font-bold text-xl" data-i18n="addr_heading">Address:</h4>
+                                <p class="text-gray-600" data-i18n="addr_content">Smash Tech<br>Ashok Nagar, Bilaspur, Chhattisgarh, Pin 496001, India</p>
+                            </div>
+                        </div>
+                        <!-- Phone Numbers -->
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 text-button-primary mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.12.35.03.75-.25 1.02l-2.2 2.2z"/></svg>
+                            <div>
+                                <h4 class="font-bold text-xl" data-i18n="mobile_heading">Mobile:</h4>
+                                <p class="text-gray-600" data-i18n="phone_numbers">+91 9650903703, +91 9204946862</p>
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 text-button-primary mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <div>
+                                <h4 class="font-bold text-xl" data-i18n="email_heading">Email:</h4>
+                                <p class="text-gray-600" data-i18n="email_address">wishy333@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Map Embed (Bilaspur, CG) -->
+                    <div class="mt-8 rounded-xl overflow-hidden shadow-xl border-2 border-gray-200 aspect-video">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Ashok%20Nagar%2C%20Bilaspur%2C%20Chhattisgarh%2C%20India&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Google Map Location of Smash Tech, Bilaspur">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer Section -->
+    <footer class="bg-dark-navy text-text-light py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p data-i18n="footer_copy">&copy; 2024 Smash Tech. All rights reserved. | Developed with passion and integrity.</p>
+            <div class="mt-2 space-x-4">
+                <a href="#" class="hover:text-accent-blue transition-all" data-i18n="privacy_policy">Privacy Policy</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="hover:text-accent-blue transition-all" data-i18n="terms_service">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle and Language Switch -->
+    <script>
+        // Set up mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
